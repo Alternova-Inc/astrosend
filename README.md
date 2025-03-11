@@ -45,46 +45,78 @@ astrosend/
 │   │   └── success.html
 │   └── base.html
 │
-├── manage.py                 # Django management script
-├── run.sh                    # Development server script
-└── setup_domains.py          # Script to set up allowed domains
+├── .env                      # Environment variables (not in git)
+├── .env.example             # Environment variables template
+├── manage.py                # Django management script
+├── run.sh                   # Development server script
+└── setup_domains.py         # Script to set up allowed domains
 ```
 
 ## Setup
 
 1. Clone the repository
+
 2. Install dependencies:
-   ```
+   ```bash
    conda activate astrosend
-   pip install django psycopg2-binary
+   pip install -r requirements.txt
    ```
 
-3. Set up the database:
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env
    ```
+   Then edit `.env` with your specific configuration:
+   - Database settings
+   - Email settings (Mailgun)
+   - Django settings (secret key, debug mode, etc.)
+
+4. Set up the database:
+   ```bash
    python manage.py migrate
    ```
 
-4. Set up allowed domains:
-   ```
+5. Set up allowed domains:
+   ```bash
    python setup_domains.py
    ```
 
-5. Run the development server:
-   ```
+6. Run the development server:
+   ```bash
    ./run.sh
    ```
 
-## Email Configuration
+## Environment Variables
 
-For development, emails are output to the console. In production, configure Mailgun SMTP settings in `settings.py` or using environment variables:
+The following environment variables need to be configured in your `.env` file:
 
-- `MAILGUN_SMTP_USERNAME`
-- `MAILGUN_SMTP_PASSWORD`
-- `DEFAULT_FROM_EMAIL`
+### Django Settings
+- `DJANGO_SECRET_KEY`: Your Django secret key
+- `DJANGO_DEBUG`: Set to "True" for development, "False" for production
+- `DJANGO_ALLOWED_HOSTS`: Comma-separated list of allowed hosts
+
+### Database Settings
+- `DB_ENGINE`: Database engine (default: django.db.backends.postgresql)
+- `DB_NAME`: Database name
+- `DB_USER`: Database user
+- `DB_PASSWORD`: Database password
+- `DB_HOST`: Database host (default: localhost)
+- `DB_PORT`: Database port (default: 5432)
+
+### Email Settings (Mailgun)
+- `EMAIL_BACKEND`: Email backend to use
+- `EMAIL_HOST`: SMTP host (default: smtp.mailgun.org)
+- `EMAIL_PORT`: SMTP port (default: 587)
+- `EMAIL_USE_TLS`: Whether to use TLS (default: True)
+- `MAILGUN_SMTP_USERNAME`: Your Mailgun SMTP username
+- `MAILGUN_SMTP_PASSWORD`: Your Mailgun SMTP password
+- `DEFAULT_FROM_EMAIL`: Default sender email address
 
 ## Security Considerations
 
 - The application doesn't maintain persistent sessions for enhanced security
 - Authentication codes expire after 10 minutes
 - Only specific email domains are allowed
-- PostgreSQL is used for robust data storage 
+- PostgreSQL is used for robust data storage
+- Environment variables are used for sensitive configuration
+- The `.env` file is not committed to version control 

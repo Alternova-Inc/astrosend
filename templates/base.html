@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroSend - Secure File Transfer</title>
+    
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/static/favicon.ico">
+    
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                {% block logo %}
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 2C8.27812 2 2 8.27812 2 16C2 23.7219 8.27812 30 16 30C23.7219 30 30 23.7219 30 16C30 8.27812 23.7219 2 16 2ZM16 7C17.6562 7 19 8.34375 19 10C19 11.6562 17.6562 13 16 13C14.3438 13 13 11.6562 13 10C13 8.34375 14.3438 7 16 7ZM20 22H12C11.4375 22 11 21.5625 11 21C11 20.4375 11.4375 20 12 20H13V16H12C11.4375 16 11 15.5625 11 15C11 14.4375 11.4375 14 12 14H17C17.5625 14 18 14.4375 18 15V20H19C19.5625 20 20 20.4375 20 21C20 21.5625 19.5625 22 20 22Z" fill="white"/>
+                </svg>
+                {% endblock %}
+            </div>
+            
+            {% block header %}
+            <h1>Sign in</h1>
+            {% endblock %}
+        </header>
+        
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        
+        <footer>
+            {% block footer %}
+            <p>&copy; Alternova {% now "Y" %}</p>
+            {% endblock %}
+        </footer>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>Welcome</h2>
+    <p class="subtitle">Get a login code emailed to you.</p>
+    
+    <div id="auth-form-container">
+        {% include "auth_app/email_form.html" %}
+    </div>
+</div>
+{% endblock %} 

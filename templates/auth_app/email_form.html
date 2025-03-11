@@ -1,0 +1,28 @@
+<form 
+    hx-post="{% url 'auth_app:verify_email' %}" 
+    hx-target="#auth-form-container"
+    hx-swap="innerHTML"
+    hx-indicator="#spinner"
+    class="auth-form"
+>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="Enter your email address" 
+            required
+            value="{{ email|default:'' }}"
+            autocomplete="email"
+        >
+        {% if error %}
+        <div class="error-message">{{ error }}</div>
+        {% endif %}
+    </div>
+    
+    <button type="submit" class="btn btn-primary">
+        <span>Send me a code</span>
+        <div id="spinner" class="htmx-indicator spinner"></div>
+    </button>
+</form> 

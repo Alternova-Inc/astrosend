@@ -83,14 +83,9 @@
                     class="file-input"
                     data-max-size="52428800"
                 >
-                <div class="file-upload-preview">
-                    <div class="file-upload-placeholder">
-                        <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="currentColor"/>
-                        </svg>
-                        <span>Drag and drop files here or click to browse</span>
-                        <span class="file-size-limit">Maximum total size: 50MB</span>
-                    </div>
+                <div class="file-list" style="display: none;">
+                    <div class="file-list-items"></div>
+                    <div class="file-list-total"></div>
                 </div>
             </div>
         </div>
@@ -105,8 +100,60 @@
         </div>
         
         <button type="submit" class="btn btn-primary">
-            Send secret
+            <span>Send Secret</span>
         </button>
     </form>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.getElementById('files');
+    const fileList = document.querySelector('.file-list');
+    const fileListItems = document.querySelector('.file-list-items');
+    const fileListTotal = document.querySelector('.file-list-total');
+    const maxSize = parseInt(fileInput.dataset.maxSize);
+    let currentFiles = [];
+
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    function updateFileList() {
+        const newFiles = Array.from(fileInput.files);
+        currentFiles = [...currentFiles, ...newFiles];
+        
+        if (currentFiles.length > 0) {
+            fileList.style.display = 'block';
+            let totalSize = 0;
+            fileListItems.innerHTML = '';
+            
+            currentFiles.forEach(file => {
+                totalSize += file.size;
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.textContent = `${file.name} (${formatFileSize(file.size)})`;
+                fileListItems.appendChild(fileItem);
+            });
+            
+            fileListTotal.textContent = `Total: ${formatFileSize(totalSize)}`;
+            
+            if (totalSize > maxSize) {
+                fileListTotal.classList.add('error');
+                fileListTotal.textContent = `Total size exceeds 50MB limit: ${formatFileSize(totalSize)}`;
+            } else {
+                fileListTotal.classList.remove('error');
+            }
+        } else {
+            fileList.style.display = 'none';
+            fileListTotal.textContent = '';
+        }
+    }
+
+    fileInput.addEventListener('change', updateFileList);
+});
+</script>
 {% endblock %} 

@@ -83,18 +83,33 @@ input:focus {
 
 /* File Upload */
 .file-upload {
-    position: relative;
     width: 100%;
 }
 
 .file-input {
-    position: absolute;
     width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0;
+    padding: 1rem;
+    background-color: #2a2a2a;
+    border: none;
+    border-radius: 0.5rem;
+    color: #ffffff;
+    font-size: 1rem;
     cursor: pointer;
+}
+
+.file-input::-webkit-file-upload-button {
+    background-color: #6366f1;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    font-size: 1.1rem;
+}
+
+.file-input::-webkit-file-upload-button:hover {
+    background-color: #4f46e5;
 }
 
 .file-upload-preview {
@@ -131,18 +146,105 @@ input:focus {
     color: #666;
 }
 
+/* File List */
+.file-list {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #2a2a2a;
+    border-radius: 0.5rem;
+    max-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.file-list-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow-y: auto;
+    max-height: 200px;
+    padding-right: 0.5rem;
+}
+
+.file-item {
+    color: #ffffff;
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    background-color: #333;
+    border-radius: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+}
+
+.file-list-total {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #3a3a3a;
+    color: #a0a0a0;
+    font-size: 0.95rem;
+    text-align: right;
+    flex-shrink: 0;
+    background-color: #2a2a2a;
+}
+
+.file-list-total.error {
+    color: var(--error-color);
+}
+
+.btn-remove-file {
+    padding: 0.25rem;
+    color: #a0a0a0;
+    margin-left: 0.5rem;
+    flex-shrink: 0;
+}
+
+.btn-remove-file:hover {
+    color: var(--error-color);
+}
+
+.btn-clear-files {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #a0a0a0;
+    font-size: 0.9rem;
+}
+
+.btn-clear-files:hover {
+    color: var(--error-color);
+}
+
+/* Scrollbar styles for the file list */
+.file-list-items::-webkit-scrollbar {
+    width: 8px;
+}
+
+.file-list-items::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 4px;
+}
+
+.file-list-items::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+.file-list-items::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 /* Send Secret Form */
 .send-secret {
     max-width: 600px;
     margin: 0 auto;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 2rem;
 }
 
 .send-secret h1 {
-    margin-bottom: 2rem;
     font-size: 2rem;
     font-weight: 600;
 }

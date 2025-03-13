@@ -4,11 +4,19 @@
 <div class="send-secret">
     <h1>Share Your Secret</h1>
     
-    <form class="secret-form" method="POST" action="{% url 'dashboard:send' %}">
+    <form class="secret-form" method="POST" action="{% url 'dashboard:send' %}" enctype="multipart/form-data">
         {% csrf_token %}
         
         <div class="form-group">
-            <label for="to">To</label>
+            <div class="form-header">
+                <label for="to">To</label>
+                <div class="form-help">
+                    <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="currentColor"/>
+                    </svg>
+                    <span>Recipient's email address (not encrypted)</span>
+                </div>
+            </div>
             <input 
                 type="email" 
                 id="to" 
@@ -19,7 +27,15 @@
         </div>
         
         <div class="form-group">
-            <label for="subject">Subject</label>
+            <div class="form-header">
+                <label for="subject">Subject</label>
+                <div class="form-help warning">
+                    <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 21H23L12 2L1 21ZM13 18H11V16H13V18ZM13 14H11V10H13V14Z" fill="currentColor"/>
+                    </svg>
+                    <span>Subject will be visible to the recipient (not encrypted)</span>
+                </div>
+            </div>
             <input 
                 type="text" 
                 id="subject" 
@@ -30,7 +46,15 @@
         </div>
         
         <div class="form-group">
-            <label for="message">Message</label>
+            <div class="form-header">
+                <label for="message">Message</label>
+                <div class="form-help">
+                    <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 11.99H19C18.47 16.11 15.72 19.78 12 20.93V12H5V6.3L12 2.19V11.99Z" fill="currentColor"/>
+                    </svg>
+                    <span>Message will be encrypted</span>
+                </div>
+            </div>
             <textarea 
                 id="message" 
                 name="message" 
@@ -38,6 +62,40 @@
                 required
                 rows="6"
             ></textarea>
+        </div>
+
+        <div class="form-group">
+            <div class="form-header">
+                <label for="files">Attachments</label>
+                <div class="form-help">
+                    <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 11.99H19C18.47 16.11 15.72 19.78 12 20.93V12H5V6.3L12 2.19V11.99Z" fill="currentColor"/>
+                    </svg>
+                    <span>Files will be encrypted</span>
+                </div>
+            </div>
+            <div class="file-upload">
+                <input 
+                    type="file" 
+                    id="files" 
+                    name="files" 
+                    multiple
+                    class="file-input"
+                    data-max-size="52428800"
+                >
+                <div class="file-upload-preview">
+                    <div class="file-upload-placeholder">
+                        <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="currentColor"/>
+                        </svg>
+                        <span>Drag and drop files here or click to browse</span>
+                        <span class="file-size-limit">Maximum total size: 50MB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
             <div class="form-help">
                 <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17 7H13V9H17V7ZM17 11H13V13H17V11ZM17 15H13V17H17V15ZM11 7H7V9H11V7ZM11 11H7V13H11V11ZM11 15H7V17H11V15ZM20.1 3H3.9C3.4 3 3 3.4 3 3.9V20.1C3 20.5 3.4 21 3.9 21H20.1C20.5 21 21 20.5 21 20.1V3.9C21 3.4 20.5 3 20.1 3ZM19 19H5V5H19V19Z" fill="currentColor"/>

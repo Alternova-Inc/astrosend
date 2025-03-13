@@ -24,6 +24,10 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     min-height: 100vh;
+}
+
+/* Auth pages specific styles */
+body:not(.dashboard-page) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,6 +36,10 @@ body {
 /* Container */
 .container {
     width: 100%;
+}
+
+/* Auth container */
+.auth-container .container {
     max-width: 460px;
     background-color: var(--card-bg);
     border-radius: 8px;
@@ -222,9 +230,23 @@ footer {
 }
 
 /* Dashboard Layout */
+.dashboard-page .container {
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.dashboard-page header {
+    display: none;
+}
+
+.dashboard-page footer {
+    display: none;
+}
+
 .dashboard {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
     background-color: #1a1a1a;
     color: #ffffff;
 }
@@ -237,6 +259,8 @@ footer {
     display: flex;
     flex-direction: column;
     border-right: 1px solid #333;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .logo {

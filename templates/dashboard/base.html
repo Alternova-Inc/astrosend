@@ -39,16 +39,6 @@
                 </svg>
                 <span>Sign out</span>
             </a>
-
-            <div class="user-profile">
-                <div class="avatar">
-                    {{ request.user.email|slice:":2"|upper }}
-                </div>
-                <div class="user-info">
-                    <div class="user-name">{{ request.user.email }}</div>
-                    <div class="user-role">Alternova</div>
-                </div>
-            </div>
         </div>
     </nav>
 

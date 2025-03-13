@@ -17,10 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('apps.auth_app.urls')),
     path('dashboard/', include('apps.dashboard.urls')),
-    path('', RedirectView.as_view(pattern_name='dashboard:home')),
+    path('', login_required(RedirectView.as_view(pattern_name='dashboard:home'))),
 ]

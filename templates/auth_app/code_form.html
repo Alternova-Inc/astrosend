@@ -3,6 +3,7 @@
     hx-target="#auth-form-container"
     hx-swap="innerHTML"
     hx-indicator="#spinner"
+    hx-on::after-request="if(event.detail.xhr.getResponseHeader('HX-Redirect')) { window.location.href = event.detail.xhr.getResponseHeader('HX-Redirect'); }"
     class="auth-form"
 >
     <input type="hidden" name="email" value="{{ email }}">

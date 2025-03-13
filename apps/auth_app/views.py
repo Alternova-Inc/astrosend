@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.urls import reverse
 from django.template.loader import render_to_string
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 
 from .models import AllowedDomain, AuthCode
@@ -15,6 +15,12 @@ from .models import AllowedDomain, AuthCode
 def login_page(request):
     """Render the login page with email input"""
     return render(request, 'auth_app/login.html')
+
+
+def logout_view(request):
+    """Handle user logout"""
+    logout(request)
+    return redirect('auth_app:login')
 
 
 @csrf_protect
@@ -134,13 +140,10 @@ def verify_code(request):
         # Log the user in
         login(request, user)
         
-        # Redirect to dashboard
-        return HttpResponse(
-            render_to_string('auth_app/success.html', {
-                'email': email,
-                'redirect_url': reverse('dashboard:home')
-            })
-        )
+        # Return a redirect response with HX-Redirect header
+        response = HttpResponse()
+        response['HX-Redirect'] = reverse('dashboard:home')
+        return response
         
     except Exception as e:
         # Log the error in a production environment

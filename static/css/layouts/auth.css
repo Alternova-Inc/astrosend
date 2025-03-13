@@ -1,0 +1,89 @@
+/* Auth pages specific styles */
+body:not(.dashboard-page) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container */
+.container {
+    width: 100%;
+}
+
+/* Auth container */
+.auth-container .container {
+    max-width: 460px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    position: relative;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Auth Container */
+.auth-container {
+    text-align: center;
+}
+
+.auth-container h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* Success Page */
+.auth-success {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.success-icon {
+    margin-bottom: 20px;
+}
+
+.redirect-message {
+    margin-top: 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .container {
+        border-radius: 0;
+        min-height: 100vh;
+        padding: 30px 20px;
+    }
+} 

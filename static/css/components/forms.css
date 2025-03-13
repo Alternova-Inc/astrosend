@@ -1,0 +1,94 @@
+/* Form Elements */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 8px;
+}
+
+label {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+input {
+    padding: 12px 16px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.form-help {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.form-footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Send Secret Form */
+.send-secret {
+    max-width: 600px;
+}
+
+.send-secret h1 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.secret-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.secret-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #a0a0a0;
+}
+
+.secret-form input,
+.secret-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 0.5rem;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.secret-form input:focus,
+.secret-form textarea:focus {
+    outline: none;
+    border-color: #6366f1;
+}
+
+.secret-form .form-help {
+    margin-top: 0.5rem;
+    color: #a0a0a0;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+}
+
+.secret-form .form-help .icon {
+    margin-right: 0.5rem;
+} 

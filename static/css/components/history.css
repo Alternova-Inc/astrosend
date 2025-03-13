@@ -1,0 +1,65 @@
+/* History */
+.history h1 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.history-item {
+    background-color: #242424;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.history-item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.history-item .recipient {
+    font-weight: 500;
+}
+
+.history-item .date {
+    color: #a0a0a0;
+    font-size: 0.875rem;
+}
+
+.history-item .subject {
+    color: #a0a0a0;
+    margin-bottom: 0.5rem;
+}
+
+.history-item .status {
+    font-size: 0.875rem;
+}
+
+.history-item .status.active {
+    color: #10b981;
+}
+
+.history-item .status.expired {
+    color: #ef4444;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #a0a0a0;
+}
+
+.empty-state .icon {
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.empty-state p {
+    font-size: 0.875rem;
+} 

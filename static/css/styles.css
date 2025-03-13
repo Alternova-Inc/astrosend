@@ -1,3 +1,39 @@
+/* Base styles */
+@import 'base/reset.css';
+
+/* Components */
+@import 'components/buttons.css';
+@import 'components/forms.css';
+@import 'components/history.css';
+
+/* Layouts */
+@import 'layouts/auth.css';
+@import 'layouts/dashboard.css';
+
+/* HTMX Spinner */
+.htmx-indicator {
+    display: none;
+}
+
+.htmx-request .htmx-indicator {
+    display: inline-block;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 /* Reset and Base Styles */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -170,30 +206,6 @@ input:focus {
     margin-top: 10px;
     display: flex;
     justify-content: center;
-}
-
-/* Spinner for HTMX */
-.htmx-indicator {
-    display: none;
-}
-
-.htmx-request .htmx-indicator {
-    display: inline-block;
-}
-
-.spinner {
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: white;
-    animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
 }
 
 /* Success Page */

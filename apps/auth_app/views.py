@@ -137,10 +137,13 @@ def verify_code(request):
             }
         )
         
+        # Set session expiry based on settings
+        request.session.set_expiry(settings.SESSION_COOKIE_AGE)
+        
         # Log the user in
         login(request, user)
         
-        # Return a redirect response with HX-Redirect header
+        # Create response with HX-Redirect header
         response = HttpResponse()
         response['HX-Redirect'] = reverse('dashboard:home')
         return response

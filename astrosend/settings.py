@@ -146,6 +146,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'auth_app:login'
 LOGIN_REDIRECT_URL = 'dashboard:home'
 
+# Session settings
+SESSION_COOKIE_AGE = int(os.getenv('SESSION_COOKIE_AGE', 3600))  # Default to 1 hour if not set
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_HTTPONLY = True  # Prevent JavaScript access to the session cookie
+SESSION_COOKIE_SAMESITE = 'Lax'  # Protect against CSRF
+
+# Only enforce secure cookies in production
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True  # Only send cookie over HTTPS
+
 # Email settings
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
 EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.mailgun.org')

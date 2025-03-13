@@ -6,6 +6,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.urls import reverse
 from django.template.loader import render_to_string
+from django.contrib.auth import login
+from django.contrib.auth.models import User
 
 from .models import AllowedDomain, AuthCode
 
@@ -120,14 +122,23 @@ def verify_code(request):
         auth_code.used = True
         auth_code.save()
         
-        # Authentication successful - redirect to the main application
-        # In a real application, you might set a session or token here
-        # but as per requirements, we don't want to maintain sessions
+        # Get or create user
+        user, created = User.objects.get_or_create(
+            username=email,
+            defaults={
+                'email': email,
+                'is_active': True
+            }
+        )
         
-        # For now, just redirect to a success page
+        # Log the user in
+        login(request, user)
+        
+        # Redirect to dashboard
         return HttpResponse(
             render_to_string('auth_app/success.html', {
-                'email': email
+                'email': email,
+                'redirect_url': reverse('dashboard:home')
             })
         )
         

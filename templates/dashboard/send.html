@@ -1,0 +1,54 @@
+{% extends "dashboard/base.html" %}
+
+{% block dashboard_content %}
+<div class="send-secret">
+    <h1>Share Your Secret</h1>
+    
+    <form class="secret-form" method="POST" action="{% url 'dashboard:send' %}">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="to">To</label>
+            <input 
+                type="email" 
+                id="to" 
+                name="to" 
+                placeholder="Enter recipient's email"
+                required
+            >
+        </div>
+        
+        <div class="form-group">
+            <label for="subject">Subject</label>
+            <input 
+                type="text" 
+                id="subject" 
+                name="subject" 
+                placeholder="Enter message subject"
+                required
+            >
+        </div>
+        
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea 
+                id="message" 
+                name="message" 
+                placeholder="Your message starts here..."
+                required
+                rows="6"
+            ></textarea>
+            <div class="form-help">
+                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 7H13V9H17V7ZM17 11H13V13H17V11ZM17 15H13V17H17V15ZM11 7H7V9H11V7ZM11 11H7V13H11V11ZM11 15H7V17H11V15ZM20.1 3H3.9C3.4 3 3 3.4 3 3.9V20.1C3 20.5 3.4 21 3.9 21H20.1C20.5 21 21 20.5 21 20.1V3.9C21 3.4 20.5 3 20.1 3ZM19 19H5V5H19V19Z" fill="currentColor"/>
+                </svg>
+                <span>This message will have a life time of 24 hours. After that time, it will disappear completely and there will be no trace of it.</span>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">
+            Send secret
+        </button>
+    </form>
+</div>
+{% endblock %} 

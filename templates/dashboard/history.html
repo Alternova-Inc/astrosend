@@ -1,0 +1,36 @@
+{% extends "dashboard/base.html" %}
+
+{% block dashboard_content %}
+<div class="history">
+    <h1>Message History</h1>
+    
+    <div class="history-list">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="history-item">
+                    <div class="history-item-header">
+                        <div class="recipient">{{ message.to }}</div>
+                        <div class="date">{{ message.created_at|date:"M j, Y" }}</div>
+                    </div>
+                    <div class="subject">{{ message.subject }}</div>
+                    <div class="status {% if message.is_expired %}expired{% else %}active{% endif %}">
+                        {% if message.is_expired %}
+                            Expired
+                        {% else %}
+                            Active until {{ message.expires_at|date:"M j, Y H:i" }}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="empty-state">
+                <svg class="icon" width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="currentColor"/>
+                </svg>
+                <h3>No messages yet</h3>
+                <p>When you send messages, they will appear here</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %} 

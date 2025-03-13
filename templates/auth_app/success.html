@@ -12,10 +12,8 @@
     <p class="redirect-message">Redirecting to your secure dashboard...</p>
     
     <script>
-        // In a real application, you might use a token or session ID here
-        // Since we're not maintaining sessions, this is just for demonstration
         setTimeout(function() {
-            window.location.href = '/dashboard/';
+            window.location.href = '{{ redirect_url }}';
         }, 2000);
     </script>
 </div> 

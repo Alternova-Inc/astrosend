@@ -8,6 +8,8 @@ A secure file and text sharing application built with Django and HTMX.
 - Domain-based email restrictions
 - No persistent sessions for enhanced security
 - Modern, responsive UI
+- Secure file uploads with size limits
+- Character-limited encrypted messages
 
 ## Project Structure
 
@@ -16,7 +18,16 @@ astrosend/
 │
 ├── apps/                     # Application directory
 │   ├── __init__.py
-│   └── auth_app/             # Authentication application
+│   ├── auth_app/            # Authentication application
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── migrations/
+│   │   ├── models.py
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   └── dashboard/           # Dashboard application
 │       ├── __init__.py
 │       ├── admin.py
 │       ├── apps.py
@@ -26,30 +37,41 @@ astrosend/
 │       ├── urls.py
 │       └── views.py
 │
-├── astrosend/                # Project configuration
-│   ├── __init__.py
-│   ├── asgi.py
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-│
-├── static/                   # Static files
-│   └── css/
-│       └── styles.css
-│
-├── templates/                # HTML templates
-│   ├── auth_app/
+├── templates/               # HTML templates
+│   ├── base/               # Base templates and assets
+│   │   ├── js/
+│   │   │   └── csrf.js     # CSRF token handling
+│   │   └── css/
+│   │       ├── base.css    # Base styles
+│   │       ├── forms.css   # Form styles
+│   │       └── buttons.css # Button styles
+│   │
+│   ├── auth_app/          # Authentication templates
+│   │   ├── js/
+│   │   │   └── success.js # Success page JavaScript
+│   │   ├── css/
+│   │   │   └── auth.css   # Authentication styles
 │   │   ├── code_form.html
 │   │   ├── email_form.html
 │   │   ├── login.html
 │   │   └── success.html
-│   └── base.html
+│   │
+│   ├── dashboard/         # Dashboard templates
+│   │   ├── js/
+│   │   │   └── send.js    # Send page JavaScript
+│   │   ├── css/
+│   │   │   └── send.css   # Send page styles
+│   │   ├── base.html      # Dashboard base template
+│   │   ├── send.html      # Send secret page
+│   │   └── history.html   # History page
+│   │
+│   └── base.html          # Main base template
 │
-├── .env                      # Environment variables (not in git)
-├── .env.example             # Environment variables template
-├── manage.py                # Django management script
-├── run.sh                   # Development server script
-└── setup_domains.py         # Script to set up allowed domains
+├── .env                    # Environment variables (not in git)
+├── .env.example           # Environment variables template
+├── manage.py              # Django management script
+├── run.sh                 # Development server script
+└── setup_domains.py       # Script to set up allowed domains
 ```
 
 ## Setup

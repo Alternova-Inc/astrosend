@@ -9,14 +9,7 @@
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.body.addEventListener('htmx:configRequest', function(evt) {
-                let token = document.querySelector('meta[name="csrf-token"]');
-                if (token) {
-                    evt.detail.headers['X-CSRFToken'] = token.content;
-                }
-            });
-        });
+        {% include "base/js/csrf.js" %}
     </script>
     
     <!-- CSS -->

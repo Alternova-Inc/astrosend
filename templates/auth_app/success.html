@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 <div class="auth-success">
     <div class="success-icon">
         <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -11,9 +14,9 @@
     
     <p class="redirect-message">Redirecting to your secure dashboard...</p>
     
+    <meta name="redirect-url" content="{{ redirect_url }}">
     <script>
-        setTimeout(function() {
-            window.location.href = '{{ redirect_url }}';
-        }, 2000);
+        {% include "auth_app/js/success.js" %}
     </script>
-</div> 
+</div>
+{% endblock %} 
